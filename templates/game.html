@@ -1,0 +1,70 @@
+{% extends "base.html" %}
+
+{% block title %}Adventure &mdash; Python Adventure Lab{% endblock %}
+
+{% block content %}
+
+{% if last_message %}
+<div class="alert alert-info">{{ last_message }}</div>
+{% endif %}
+
+<div class="player-card card">
+    <h2>{{ player.name }}</h2>
+    <div class="stats-row">
+        <div class="stat stat-health">
+            <div class="stat-label">Health</div>
+            <div class="health-bar">
+                <div class="health-fill" style="width: {{ player.health }}%;"></div>
+            </div>
+            <div class="stat-value">{{ player.health }} / 100</div>
+        </div>
+        <div class="stat">
+            <div class="stat-label">Score</div>
+            <div class="stat-value score">🏆 {{ player.score }}</div>
+        </div>
+        <div class="stat">
+            <div class="stat-label">Items</div>
+            <div class="stat-value">🎒 {{ player.inventory|length }}</div>
+        </div>
+        <div class="stat">
+            <div class="stat-label">Location</div>
+            <div class="stat-value">📍 {{ location.name }}</div>
+        </div>
+    </div>
+</div>
+
+<div class="location-card card">
+    <h3>📍 {{ location.name }}</h3>
+    <p class="location-desc">{{ location.description }}</p>
+</div>
+
+<div class="inventory-card card">
+    <h3>🎒 Inventory</h3>
+    {% if player.inventory %}
+    <div class="inventory-list">
+        {% for item in player.inventory %}
+        <span class="chip">{{ item }}</span>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="empty-state">Your backpack is empty. Find items on your journey!</p>
+    {% endif %}
+</div>
+
+<div class="actions-card card">
+    <h3>⚡ Actions</h3>
+    {% if actions %}
+    <div class="actions-list">
+        {% for action in actions %}
+        <form method="POST" action="/action" class="action-form">
+            <input type="hidden" name="action" value="{{ action.id }}">
+            <button type="submit" class="btn-action">{{ action.label }}</button>
+        </form>
+        {% endfor %}
+    </div>
+    {% else %}
+    <p class="empty-state">No available actions right now.</p>
+    {% endif %}
+</div>
+
+{% endblock %}

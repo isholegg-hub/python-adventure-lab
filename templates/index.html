@@ -1,0 +1,42 @@
+{% extends "base.html" %}
+
+{% block title %}Home &mdash; Python Adventure Lab{% endblock %}
+
+{% block content %}
+<div class="hero">
+    <div class="hero-illustration" aria-hidden="true">
+        <pre>
+    ~~~~~~~~~~~~~~~~~~~~~~
+   /  🌲  🌲    🏰    🌲  \
+  |   🌲   ⚔️   |||   🌲   |
+  |      🐍   ~~~~~        |
+   \   💎    🌲   🗝️     /
+    ~~~~~~~~~~~~~~~~~~~~~~
+        </pre>
+    </div>
+
+    <h1 class="hero-title">Python Adventure Lab</h1>
+    <p class="hero-subtitle">An educational Flask adventure game</p>
+
+    <p class="story">
+        Deep in the Misty Mountains, a forgotten treasure awaits. As a young adventurer,
+        you must navigate dark forests, solve ancient puzzles, and collect powerful items.
+        Every choice shapes your journey. Will you find the legendary Crystal of Wisdom
+        before your health runs out?
+    </p>
+
+    <form method="POST" action="/start" class="start-form">
+        <label for="name" class="visually-hidden">Your name</label>
+        <input
+            type="text"
+            id="name"
+            name="name"
+            required
+            maxlength="30"
+            placeholder="Your name"
+            class="name-input"
+        >
+        <button type="submit" class="btn-start">⚔️ Start Adventure</button>
+    </form>
+</div>
+{% endblock %}

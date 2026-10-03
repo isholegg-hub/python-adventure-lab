@@ -1,0 +1,37 @@
+{% extends "base.html" %}
+
+{% block title %}{{ 'Victory!' if is_won else 'Game Over' }} &mdash; Python Adventure Lab{% endblock %}
+
+{% block content %}
+<div class="result-card card">
+    {% if is_won %}
+    <h1 class="result-win">🎉 You Won!</h1>
+    {% else %}
+    <h1 class="result-lose">💀 Game Over</h1>
+    {% endif %}
+
+    <p class="final-message">{{ final_message }}</p>
+
+    <div class="result-stats">
+        <div class="result-stat">
+            <span class="result-stat-label">Final Score</span>
+            <span class="result-stat-value">🏆 {{ score }}</span>
+        </div>
+    </div>
+
+    <div class="inventory-card card-inner">
+        <h3>🎒 Final Inventory</h3>
+        {% if inventory %}
+        <div class="inventory-list">
+            {% for item in inventory %}
+            <span class="chip">{{ item }}</span>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="empty-state">No items collected.</p>
+        {% endif %}
+    </div>
+
+    <a href="/" class="btn-play-again">🔄 Play Again</a>
+</div>
+{% endblock %}
